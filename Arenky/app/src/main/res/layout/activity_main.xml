@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+    <!--
+        Generamos un layout para  los fragmentos, es decir
+        es la sección que se va a estar  actualizando cada que se seleccione una nueva opción
+    -->
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"

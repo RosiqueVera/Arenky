@@ -10,16 +10,21 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
+    BottomNavigationView bottomNavigationView;                                                      //Definimos el objeto BottomNavigationView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottomNav);
+        bottomNavigationView = findViewById(R.id.bottomNav);                                        //Conectamos el objeto con el item en pantalla
         if(savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new HomeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new HomeFragment()).commit(); //En el caso de que no se encuentre un estado guardado por default nos va a mandar a HomeFragment
         }
+        /*
+         *Creamos el listener de forma ánonima para el Nav en el cual implementamos un switch case
+         para crear un fragmento dependiendo de la opción va a recuperar el fragmetno y al final del listener
+         * va a ejecutar (reemplazar el fragmento actual  por el que tomó dependiendo de la opción)
+         */
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -36,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.calendar:
                         fragment = new CalendarFragment();
+                        break;
+                    case R.id.profile:
+                        fragment = new ProfileFragment();
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + item.getItemId());
