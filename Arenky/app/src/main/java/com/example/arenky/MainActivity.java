@@ -10,15 +10,20 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;                                                      //Definimos el objeto BottomNavigationView
+    //Definimos el objeto BottomNavigationView
+    BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottomNav);                                        //Conectamos el objeto con el item en pantalla
-        if(savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new HomeFragment()).commit(); //En el caso de que no se encuentre un estado guardado por default nos va a mandar a HomeFragment
+        //Conectamos el objeto con el item en pantalla
+        bottomNavigationView = findViewById(R.id.bottomNav);
+
+        if (savedInstanceState == null) {
+            //En el caso de que no se encuentre un estado guardado por default nos va a mandar a HomeFragment
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new HomeFragment()).commit();
         }
         /*
          *Creamos el listener de forma ánonima para el Nav en el cual implementamos un switch case
@@ -28,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment  fragment = null;
-                switch (item.getItemId()){
+                Fragment fragment = null;
+                switch (item.getItemId()) {
                     case R.id.home:
                         fragment = new HomeFragment();
                         break;
@@ -48,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         throw new IllegalStateException("Unexpected value: " + item.getItemId());
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
                 return false;
             }
         });
